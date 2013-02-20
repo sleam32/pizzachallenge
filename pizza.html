@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pizza Challenge</title>
+<meta name="description" content="Nashville Software School">
+<meta name="author" content="Shearry Malone">
+
+<body>
+
+    <style>
+       p {
+        font-family: sans-serif;
+        font-size: 16px;
+       }
+
+       body {
+        font-family: sans-serif;
+        font-size: 16px;
+       }
+
+       h1 {
+        font-family: sans-serif;
+        font-size: 18px;
+       }
+    </style>
+
+    <script type="text/javascript">
+
+        function prepza() {
+
+           // the innerHTML line below clears the newly created div before the function runs 
+           // to give a blank slate every time
+           document.getElementById("results").innerHTML = '';
+
+
+           // This segment is for the toppings section of the "pizzaform"
+           var checkboxes = document.forms["pizzaform"].toppingcheck.length;
+           var newelement = document.createElement("h1");
+           document.getElementById("results").appendChild(newelement);
+           newelement.appendChild(document.createTextNode('This pizza will have:'));
+
+           for (var i = 0; i < checkboxes; i++) {
+
+               if (document.forms["pizzaform"].toppingcheck[i].checked) {
+                   var newelement = document.createElement("p");
+                   document.getElementById("results").appendChild(newelement);
+                   newelement.appendChild(document.createTextNode(document.forms["pizzaform"].toppingcheck[i].value));
+                };
+            }
+
+
+            // This segment is for the crust section of the "pizzaform"
+            var crusttype = document.forms["pizzaform"].crust;
+            var crustlength = document.forms["pizzaform"].crust.length;
+
+            for (var i = 0; i < crustlength; i++) {
+
+                if (document.forms["pizzaform"].crust[i].checked) {
+                    var newelement = document.createElement("p");
+                    document.getElementById("results").appendChild(newelement);
+                    newelement.appendChild(document.createTextNode(document.forms["pizzaform"].crust[i].value));
+                };
+
+            }
+        };
+
+    </script>
+
+</head>
+
+<body>
+
+    <form id="pizzaform" action="#">
+        <h1>Toppings:</h1>
+        <input type="checkbox" id="topping1" value="Sausage" name="toppingcheck">Sausage<br>
+        <input type="checkbox" id="topping2" value="Pepperoni" name="toppingcheck">Pepperoni<br>
+        <input type="checkbox" id="topping3" value="Ham" name="toppingcheck">Ham<br>
+        <input type="checkbox" id="topping4" value="Green Peppers" name="toppingcheck">Green Peppers<br>
+        <input type="checkbox" id="topping5" value="Mushrooms" name="toppingcheck">Mushrooms<br>
+        <input type="checkbox" id="topping6" value="Onions" name="toppingcheck">Onions<br>
+        <input type="checkbox" id="topping7" value="Pineapple" name="toppingcheck">Pineapple<br>
+
+        <br>
+        <br>
+
+        <h1>Crust:</h1>
+        <input type="radio" name="crust" value="Hand Tossed" checked="checked" id="radio1">Hand Tossed<br>
+        <input type="radio" name="crust" value="Deep Dish" id="radio2">Deep Dish<br>
+        <input type="radio" name="crust" value="Thin Crust" id="radio3">Thin Crust<br>
+
+        <p><input type="button" id="prepBtn" name="prepBtn" value="Prep Pizza"></p>
+    </form>
+
+    
+    <script type="text/javascript">
+        // this is the event listener for the Prep Pizza button.
+        // when the Prep Pizza button is clicked, the prepza() function in the head is executed.
+        document.getElementById("prepBtn").addEventListener('click', prepza, false);
+    </script>
+
+
+  <div id="results"></div>
+
+</body>
+</html>
